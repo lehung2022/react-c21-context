@@ -15,9 +15,9 @@ export const DataProvider = ({ children }) => {
     }, [data])
 
     useEffect(() => {
-        const filteredResults = posts.filter((post) =>
-            ((post.body).toLowerCase()).includes(search.toLowerCase())
-            || ((post.title).toLowerCase()).includes(search.toLowerCase()));
+        const filteredResults = posts?.filter((post) =>
+            ((post.body).toLowerCase())?.includes(search.toLowerCase())
+            || ((post.title).toLowerCase())?.includes(search.toLowerCase()));
 
         setSearchResults(filteredResults.reverse());
     }, [posts, search])

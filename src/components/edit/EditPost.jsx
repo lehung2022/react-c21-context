@@ -10,7 +10,7 @@ const EditPost = () => {
     const { posts, setPosts } = useContext(DataContext);
     const navigate = useNavigate();
     const { id } = useParams();
-    const post = posts.find(post => (post.id).toString() === id);
+    const post = posts?.find(post => (post.id)?.toString() === id);
 
     useEffect(() => {
         if (post) {
@@ -25,10 +25,10 @@ const EditPost = () => {
         const updatedPost = { id, title: editTitle, datetime, body: editBody };
         try {
             const response = await api.put(`/posts/${id}`, updatedPost);
-            setPosts(posts.map(post => post.id === id ? { ...response.data } : post));
+            setPosts(posts?.map(post => post.id === id ? { ...response.data } : post));
             setEditTitle('');
             setEditBody('');
-            history.push('/');
+            navigate('/');
         } catch (err) {
             console.log(`Error: ${err.message}`);
         }
